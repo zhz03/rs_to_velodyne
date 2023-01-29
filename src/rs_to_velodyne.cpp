@@ -202,8 +202,7 @@ int main(int argc, char **argv) {
     ros::NodeHandle nh_private("~");
     // get parameters
     std::string input_topic;
-    // nh_private.param<std::string>("input_topic", input_topic, "/rslidar_points");
-    nh_private.param<std::string>("input_topic", input_topic, "/syn_pc_new");
+    nh_private.param<std::string>("input_topic", input_topic, "/rslidar_points");
     // output topic 
     std::string output_topic;
     nh_private.param<std::string>("output_topic", output_topic, "/velodyne_points");
