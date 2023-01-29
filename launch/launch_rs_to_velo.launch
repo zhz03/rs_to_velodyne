@@ -1,0 +1,14 @@
+<?xml version='1.0'?>
+<launch>
+    <!-- <arg name="input_topic" default="/new/rslidar_points" />
+    <arg name="output_topic" default="/new/rslidar_points_subset" /> -->
+    <arg name="input_topic" default="/syn_pc_new_subset" />
+    <arg name="output_topic" default="/syn_pc_velo" />
+    <arg name="output_frame_id" default="velodyne" />
+    <node pkg="rs_to_velodyne" type="rs_to_velodyne" name="rs_to_velodyne" args="XYZI XYZI" output="screen">
+        <param name="input_topic" value="$(arg input_topic)" />
+        <param name="output_topic" value="$(arg output_topic)" />
+        <param name="output_frame_id" value="$(arg output_frame_id)" />
+    </node>
+
+</launch>
