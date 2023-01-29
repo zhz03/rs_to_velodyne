@@ -19,19 +19,51 @@ rosrun rs_to_velodyne rs_to_velodyne XYZIRT XYZIRT
 rosrun rs_to_velodyne rs_to_velodyne XYZIRT XYZIR
 # or
 rosrun rs_to_velodyne rs_to_velodyne XYZIRT XYZI
-``` 
+```
 The output point clouds are **XYZIRT** / **XYZIR** / **XYZI** point cloud `/velodyne_points` in Velodyne's format.
 
 ### 2. XYZI input
 For **XYZI** format point clouds from `/rslidar_points`:
 ```
 rosrun rs_to_velodyne rs_to_velodyne XYZI XYZIR
-``` 
+```
 The output point clouds are **XYZIR** point cloud `/velodyne_points` in Velodyne's format.
 
+### 3 From launch file
+
+In `launch/launch_rs_to_velo.launch`,  change the  line8:
+
+```xml
+<node pkg="rs_to_velodyne" type="rs_to_velodyne" name="rs_to_velodyne" args="XYZI XYZI" output="screen">
+```
+
+To any other input you need: 
+
+```xml
+<node pkg="rs_to_velodyne" type="rs_to_velodyne" name="rs_to_velodyne" args="XYZIRT XYZIR" output="screen">
+```
 
 ## Subscribes
+
+By default, the this ros node will subscribe:
+
 `/rslidar_points`: sensor_msgs.PointCloud2, from Robosense LiDAR.
 
+But if you want to change your input topic, you can change that in the `launch/launch_rs_to_velo.launch` line 5:
+
+```xml
+    <arg name="input_topic" default="/syn_pc_new_subset" />
+```
+
 ## Publishes
+By default, the this ros node will publish:
+
 `/velodyne_points`: sensor_msgs.PointCloud2, the frame_id is `velodyne`.
+
+But if you want to change your output topic and frame_id, you can change that in the `launch/launch_rs_to_velo.launch` line 6 and line 7:
+
+```xml
+    <arg name="output_topic" default="/syn_pc_velo" />
+    <arg name="output_frame_id" default="velodyne" />
+```
+
